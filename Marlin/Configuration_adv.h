@@ -430,11 +430,11 @@
  * the fan will turn on when any selected extruder is above the threshold.
  */
 
-// 35 - UNUSED SVG HEADER 35 - PA2 (ADC2/PCINT2).
-// 29 - BUZZER PIN, reuse for BL touch
+// 29 - UNUSED SVG HEADER 35? - PA2 (ADC2/PCINT2).
+// 27 - BUZZER PIN, reuse for BL touch
 
 // #define E0_AUTO_FAN_PIN -1
-#define E0_AUTO_FAN_PIN 35 // MELZI UNUSED PIN HEADER (SVG)
+#define E0_AUTO_FAN_PIN 29 // MELZI UNUSED PIN HEADER (SVG)
 
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
@@ -1652,7 +1652,7 @@
 //
 // G2/G3 Arc Support
 //
-#define ARC_SUPPORT                 // Disable this feature to save ~3226 bytes
+// #define ARC_SUPPORT                 // Disable this feature to save ~3226 bytes
 #if ENABLED(ARC_SUPPORT)
   #define MM_PER_ARC_SEGMENT      1 // (mm) Length (or minimum length) of each arc segment
   //#define ARC_SEGMENTS_PER_R    1 // Max segment length, MM_PER = Min

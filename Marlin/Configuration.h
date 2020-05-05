@@ -964,7 +964,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 } // @todo why is this not 0 ?
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1099,19 +1099,25 @@
 
 // @section machine
 
-#define ENDER_3_Y_OFFSET -34
-#define ENDER_3_Y_OFFSET_HIGH -18
+// #define ENDER_3_Y_OFFSET -34
+// #define ENDER_3_Y_OFFSET_HIGH -18
+// 
+#define ENDER_3_Y_OFFSET -10  // FRONT
+#define ENDER_3_Y_OFFSET_HIGH -10 // REAR
+
+#define ENDER_3_BED_W 241
+#define ENDER_3_BED_L 241
 
 // The size of the print bed
 #define X_BED_SIZE 235
-#define Y_BED_SIZE 235+ENDER_3_Y_OFFSET_HIGH
+#define Y_BED_SIZE ENDER_3_BED_L+ENDER_3_Y_OFFSET_HIGH
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS ENDER_3_Y_OFFSET
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS 235+ENDER_3_Y_OFFSET+ENDER_3_Y_OFFSET_HIGH
+#define Y_MAX_POS ENDER_3_BED_L+ENDER_3_Y_OFFSET+ENDER_3_Y_OFFSET_HIGH
 #define Z_MAX_POS 250
 
 /**
@@ -1247,7 +1253,7 @@
   /**
    * Enable the G26 Mesh Validation Pattern tool.
    */
-  //#define G26_MESH_VALIDATION
+  #define G26_MESH_VALIDATION
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for the G26 Mesh Validation Tool.
@@ -1262,7 +1268,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 4
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1292,7 +1298,7 @@
   //========================= Unified Bed Leveling ============================
   //===========================================================================
 
-  //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
+  // #define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
   #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
@@ -1325,7 +1331,7 @@
 #define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
-  #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
+  #define MESH_EDIT_Z_STEP  0.020 // (mm) Step size while manually probing Z axis.
   #define LCD_PROBE_Z_RANGE 4     // (mm) Z Range centered on Z_MIN_POS for LCD Z adjustment
   #define MESH_EDIT_MENU        // Add a menu to edit mesh points
 #endif
@@ -1334,7 +1340,7 @@
 //#define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET_LFRB { 10, 10, 10, 10 } // (mm) Left, Front, Right, Back insets
+  #define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
   #define LEVEL_CORNERS_HEIGHT      0.0   // (mm) Z height of nozzle at leveling points
   #define LEVEL_CORNERS_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
   #define LEVEL_CENTER_TOO              // Move to the center after the last corner
@@ -1668,7 +1674,7 @@
  * you must uncomment the following option or it won't work.
  *
  */
-#define SDSUPPORT
+// #define SDSUPPORT
 
 /**
  * SD CARD: SPI SPEED

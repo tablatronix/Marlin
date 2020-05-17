@@ -1103,21 +1103,21 @@
 // #define ENDER_3_Y_OFFSET_HIGH -18
 // 
 #define ENDER_3_Y_OFFSET -10  // FRONT
-#define ENDER_3_Y_OFFSET_HIGH -10 // REAR
+#define ENDER_3_Y_OFFSET_REAR -10 // REAR
 
 #define ENDER_3_BED_W 241
-#define ENDER_3_BED_L 241
+#define ENDER_3_BED_L 231 // 204
 
 // The size of the print bed
 #define X_BED_SIZE 235
-#define Y_BED_SIZE ENDER_3_BED_L+ENDER_3_Y_OFFSET_HIGH
+#define Y_BED_SIZE ENDER_3_BED_L+ENDER_3_Y_OFFSET_REAR
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS ENDER_3_Y_OFFSET
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS ENDER_3_BED_L+ENDER_3_Y_OFFSET+ENDER_3_Y_OFFSET_HIGH
+#define Y_MAX_POS (ENDER_3_BED_L+ENDER_3_Y_OFFSET)+ENDER_3_Y_OFFSET_REAR
 #define Z_MAX_POS 250
 
 /**
@@ -1317,7 +1317,7 @@
   //===========================================================================
 
   #define MESH_INSET 10          // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 3    // Don't use more than 7 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_X 4    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS

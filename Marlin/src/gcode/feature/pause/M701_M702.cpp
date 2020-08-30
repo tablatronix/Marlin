@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -61,7 +61,7 @@ void GcodeSuite::M701() {
 
   #if ENABLED(NO_MOTION_BEFORE_HOMING)
     // Don't raise Z if the machine isn't homed
-    if (axes_need_homing()) park_point.z = 0;
+    if (axes_should_home()) park_point.z = 0;
   #endif
 
   #if ENABLED(MIXING_EXTRUDER)
@@ -84,9 +84,7 @@ void GcodeSuite::M701() {
   if (parser.seenval('Z')) park_point.z = parser.linearval('Z');
 
   // Show initial "wait for load" message
-  #if HAS_LCD_MENU
-    lcd_pause_show_message(PAUSE_MESSAGE_LOAD, PAUSE_MODE_LOAD_FILAMENT, target_extruder);
-  #endif
+  TERN_(HAS_LCD_MENU, lcd_pause_show_message(PAUSE_MESSAGE_LOAD, PAUSE_MODE_LOAD_FILAMENT, target_extruder));
 
   #if EXTRUDERS > 1 && DISABLED(PRUSA_MMU2)
     // Change toolhead if specified
@@ -129,14 +127,10 @@ void GcodeSuite::M701() {
       tool_change(active_extruder_before_filament_change, false);
   #endif
 
-  #if ENABLED(MIXING_EXTRUDER)
-    mixer.T(old_mixing_tool); // Restore original mixing tool
-  #endif
+  TERN_(MIXING_EXTRUDER, mixer.T(old_mixing_tool)); // Restore original mixing tool
 
   // Show status screen
-  #if HAS_LCD_MENU
-    lcd_pause_show_message(PAUSE_MESSAGE_STATUS);
-  #endif
+  TERN_(HAS_LCD_MENU, lcd_pause_show_message(PAUSE_MESSAGE_STATUS));
 }
 
 /**
@@ -155,7 +149,7 @@ void GcodeSuite::M702() {
 
   #if ENABLED(NO_MOTION_BEFORE_HOMING)
     // Don't raise Z if the machine isn't homed
-    if (axes_need_homing()) park_point.z = 0;
+    if (axes_should_home()) park_point.z = 0;
   #endif
 
   #if ENABLED(MIXING_EXTRUDER)
@@ -190,9 +184,7 @@ void GcodeSuite::M702() {
   if (parser.seenval('Z')) park_point.z = parser.linearval('Z');
 
   // Show initial "wait for unload" message
-  #if HAS_LCD_MENU
-    lcd_pause_show_message(PAUSE_MESSAGE_UNLOAD, PAUSE_MODE_UNLOAD_FILAMENT, target_extruder);
-  #endif
+  TERN_(HAS_LCD_MENU, lcd_pause_show_message(PAUSE_MESSAGE_UNLOAD, PAUSE_MODE_UNLOAD_FILAMENT, target_extruder));
 
   #if EXTRUDERS > 1 && DISABLED(PRUSA_MMU2)
     // Change toolhead if specified
@@ -241,14 +233,10 @@ void GcodeSuite::M702() {
       tool_change(active_extruder_before_filament_change, false);
   #endif
 
-  #if ENABLED(MIXING_EXTRUDER)
-    mixer.T(old_mixing_tool); // Restore original mixing tool
-  #endif
+  TERN_(MIXING_EXTRUDER, mixer.T(old_mixing_tool)); // Restore original mixing tool
 
   // Show status screen
-  #if HAS_LCD_MENU
-    lcd_pause_show_message(PAUSE_MESSAGE_STATUS);
-  #endif
+  TERN_(HAS_LCD_MENU, lcd_pause_show_message(PAUSE_MESSAGE_STATUS));
 }
 
 #endif // ADVANCED_PAUSE_FEATURE

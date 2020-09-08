@@ -840,7 +840,7 @@ int16_t Temperature::getHeaterPower(const heater_id_t heater_id) {
 
       switch (f) {
         #if HAS_AUTO_FAN_0
-          case 0: _UPDATE_AUTO_FAN(E0, !fan_on, EXTRUDER_AUTO_FAN_SPEED); break;
+          case 0: _UPDATE_AUTO_FAN(E0, fan_on, EXTRUDER_AUTO_FAN_SPEED); break;
         #endif
         #if HAS_AUTO_FAN_1
           case 1: _UPDATE_AUTO_FAN(E1, fan_on, EXTRUDER_AUTO_FAN_SPEED); break;

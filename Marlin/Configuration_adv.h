@@ -1305,6 +1305,7 @@
    * :[ 'LCD', 'ONBOARD', 'CUSTOM_CABLE' ]
    */
   #define SDCARD_CONNECTION ONBOARD
+  #define SD_IGNORE_AT_STARTUP 
 
 #endif // SDSUPPORT
 
